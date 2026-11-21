@@ -1,28 +1,28 @@
-# Aegis Chain — public documentation license
+MIT License
 
-Copyright (c) 2026 Aegis Chain. All rights reserved except as stated below.
+Copyright (c) 2026 Aegis Chain
 
-## 1. Documentation
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-The text and diagrams in this repository (README files, everything under `docs/`) are licensed under
-**Creative Commons Attribution 4.0 International (CC BY 4.0)** — https://creativecommons.org/licenses/by/4.0/
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-You may share and adapt them for any purpose, including commercially, provided you give appropriate credit
-("Aegis Chain, https://github.com/ugjdygh/aegis-chain") and indicate changes.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-## 2. No licence for the core implementation
-
-The payment engine, chain scanners, settlement contract, deployment tooling and mobile application sources are
-**not** in this repository and are **not** licensed for use, copying, modification or distribution.
-Publishing documentation here does not grant any right to the implementation, its binaries, its trade secrets
-or its name. See `docs/OPEN-SCOPE.md`.
-
-## 3. Trademarks
-
-"Aegis Chain", the logo and the application icons are marks of the project owner. Do not use them to endorse
-or imply affiliation with a fork, a resale or a different service.
-
-## 4. No warranty
-
-The documentation is provided "as is", without warranty of any kind. It describes software that has not been
-audited; relying on it for financial decisions is at your own risk.
+--- Scope note ---
+This MIT grant covers demo/, sdk/, mobile-shell/ and examples/ only.
+The production implementation (gateway engine, chain scanners, settlement
+contract, reconciliation, address pools, operational tooling) is NOT part of
+this repository and is NOT licensed here. Documentation under docs/ is
+licensed CC BY 4.0. See LICENSES.md.

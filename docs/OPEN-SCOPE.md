@@ -1,43 +1,37 @@
-# What is public in this repository — and what is not
+# 开源边界 / What is public in this repository
 
-This repository exists so that merchants, reviewers and regulators can understand what Aegis Chain does, how it
-is bounded, and how to report problems — **without** exposing the implementation.
+仓库分两层：**开放的可贡献部分**（MIT）与**闭源的生产部分**。边界写在许可证里，也写在 issue 模板里。
 
-## Published (openly readable, CC BY 4.0)
+## 开放（MIT / CC BY 4.0）
 
-| Area | Content |
+| 目录 | 内容 | 许可 |
+| --- | --- | --- |
+| `demo/` | 手机演示页：开单、模拟到账、确认推进、5 语种 | MIT |
+| `sdk/` | 商户客户端：开单、轮询、HMAC 回调签名校验 | MIT |
+| `mobile-shell/` | 安卓 WebView 壳与三变体构建脚本 | MIT |
+| `examples/` | Base Sepolia 测试网走查、示例报文 | MIT |
+| `docs/` | 架构摘要、功能对照、合规、路线图、九语种 README | CC BY 4.0 |
+
+## 闭源（不授权、不分发）
+
+| 内容 | 为什么 |
 | --- | --- |
-| Product documentation | Multilingual README set (zh / en / fr / ko / ja / ru / id / es / ar), features, mobile usage, roadmap |
-| Architecture summary | Components, data flow, invoice state machine, cross-chain intent states, trust boundaries |
-| Compliance notes | Non-custodial boundary, MiCA reasoning, GDPR handling, sanctions screening policy |
-| Security policy | Disclosure channel, response targets, known limitations |
-| Release notes | Version, verified chains, test counts |
+| 生产网关引擎、链扫描器、RPC 故障转移、对账器 | 决定「何时算已结算」，公开等于给重组/双花攻击画地图 |
+| `PaymentHub` 结算合约源码与部署脚本 | 结算安全面本身 |
+| 地址池分配、签名密钥、生产端点 | 运营机密与第三方数据 |
+| 制裁名单与运行手册 | 合规与运营资产 |
 
-## Withheld (proprietary)
+## 为什么不整锅开源
 
-| Area | Why |
-| --- | --- |
-| `PaymentHub` contract source and deployment scripts | Contract bytecode and constructor parameters are the settlement security surface |
-| Payment engine, RPC failover, scanner internals | Address-pool allocation and finality heuristics are the anti-double-credit surface |
-| Cross-chain reconciler implementation | Reconciliation rules encode the anti-loss logic |
-| Signing keys, API keys, production endpoints, address pools | Operational secrets |
-| Merchant configurations and real transaction data | Third-party data |
+1. **损失不可逆**：扫描与最终性逻辑一旦公开，攻击者可以先于维护者找到可复现的重组与双付路径，而资金损失由商户承担。
+2. **第三方数据不可公开**：地址池与商户配置无法随代码一起发布，引擎与它们不可分割。
+3. **个人项目没有法律缓冲**：没有公司主体，公开引擎缺陷等于公开攻击路线，且没人替后果兜底。
 
-## Why partially closed
+## 不开源也能验证的东西
 
-1. **Loss prevention.** The scanner/finality logic decides when a payment counts as settled. Public code invites
-   crafted reorg and double-credit attacks against live merchants faster than they can be patched.
-2. **Third-party safety.** Address pools and merchant data cannot be published; the engine is inseparable from them.
-3. **Individual developer, no legal shield.** With no company, a public bug tracker on the engine would become a
-   map for attackers with nobody to absorb the consequences.
+- 演示页 `demo/index.html`：开单到确认的完整状态机，纯内存复现
+- SDK `sdk/client.mjs`：请求/响应形状与回调签名算法，逐字可对
+- 安卓壳 `mobile-shell/`：与发行版 APK 完全同一份代码
+- 链上行为：Base / Base Sepolia 的结算部署公开可查
 
-## What can still be verified without the source
-
-- Chain-level behaviour: `PaymentHub` deployments are public on Base / Base Sepolia and can be inspected on-chain.
-- Documented behaviour can be reproduced against the public demo gateway.
-- The three Android builds (dev / test / prod) share one feature set; the parity check is described in `docs/FEATURES.md`.
-
-## If you need more
-
-Open an issue describing what you need to verify and why (audit, regulatory review, integration). Scope-limited
-read access can be arranged case by case; it is not granted for forks or resale.
+需要更深的审计或合规复核？开 issue 说明你要验证什么、为什么，按个案决定是否给只读访问；不给 fork 与转售。

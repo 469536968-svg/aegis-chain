@@ -1,0 +1,46 @@
+{
+  "note": "三个环境共用同一份代码与同一套功能；只有网关地址、包名后缀、应用名不同。",
+  "features": [
+    "invoice.create",
+    "invoice.list",
+    "invoice.detail",
+    "invoice.payNative",
+    "invoice.payToken",
+    "scan.evm",
+    "scan.btc",
+    "scan.tron",
+    "confirm.reorg",
+    "webhook.hmac",
+    "bridge.intents",
+    "bridge.reconcile",
+    "sanctions.screen",
+    "metrics",
+    "ui.console",
+    "support.donate",
+    "contract.settle",
+    "ui.checkout",
+    "i18n.zh",
+    "i18n.en",
+    "i18n.de",
+    "i18n.fr",
+    "i18n.es",
+    "pwa"
+  ],
+  "envs": {
+    "dev": {
+      "packageSuffix": ".dev",
+      "appName": "Aegis Dev",
+      "defaultBaseUrl": "http://127.0.0.1:8787"
+    },
+    "test": {
+      "packageSuffix": ".test",
+      "appName": "Aegis Test",
+      "defaultBaseUrl": "https://test.aegis-chain.example"
+    },
+    "prod": {
+      "packageSuffix": "",
+      "appName": "Aegis Chain",
+      "defaultBaseUrl": "https://app.aegis-chain.example"
+    }
+  }
+}

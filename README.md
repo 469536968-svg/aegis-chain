@@ -1,51 +1,85 @@
 # Aegis Chain
 
-> A non-custodial, multi-chain payment console for merchants who want to accept crypto without handing anyone their keys.
-> 非托管多链收款平台：商户自己掌握私钥，平台只做收款、对账与跨链意图台账。
+> Non-custodial multi-chain payment & donation gateway — invoices, on-chain settlement, cross-chain intents, mobile checkout. Core production engine is closed; the demo, SDK, mobile shell and docs are open under MIT.
+>
+> 非托管多链收款与捐赠网关：收款单、链上结算、跨链意图、手机收银台。**核心生产引擎闭源，演示前端 / SDK / 安卓壳 / 文档以 MIT 开源。**
 
-[中文](docs/i18n/README.zh.md) · [English](docs/i18n/README.en.md) · [Français](docs/i18n/README.fr.md) · [한국어](docs/i18n/README.ko.md) · [日本語](docs/i18n/README.ja.md) · [Русский](docs/i18n/README.ru.md) · [Bahasa Indonesia](docs/i18n/README.id.md) · [Español](docs/i18n/README.es.md) · [العربية](docs/i18n/README.ar.md)
+[中文文档](docs/i18n/README.zh.md) · [English](docs/i18n/README.en.md) · [Français](docs/i18n/README.fr.md) · [한국어](docs/i18n/README.ko.md) · [日本語](docs/i18n/README.ja.md) · [Русский](docs/i18n/README.ru.md) · [Bahasa Indonesia](docs/i18n/README.id.md) · [Español](docs/i18n/README.es.md) · [العربية](docs/i18n/README.ar.md)
 
 ---
 
-## What it is
+## Try it in 10 seconds
 
-A self-hosted payment gateway plus a mobile console. Merchants create an invoice, the customer pays on-chain, the gateway watches the chain and settles the invoice. No accounts, no custody, no token.
+Open [`demo/index.html`](demo/index.html) in a browser — double-click, no build, no server, no wallet. It runs a full invoice → deposit → confirmation flow against an in-memory mock. Nothing on screen touches real funds.
 
-- **Multi-chain receiving** — Ethereum, Base, Arbitrum, Polygon, BNB Chain, plus BTC and TRON watching via public indexers
-- **On-chain settlement** — a `PaymentHub` contract releases funds only to the merchant's own address with a signed, replay-proof settlement proof
-- **Cross-chain intents** — a ledger with explicit states (source / confirm / credit / done); no automatic retries, every hop is reconciled
-- **Safety rails** — sanctions screening before an invoice is issued, RPC failover with circuit breaking, reorg-aware confirmations
-- **Support page** — `/support` collects donations through the project's own addresses, with locally generated QR codes and wallet deep links; the supporter list ships disabled by design
-- **Mobile app** — native Android shell (dev / test / prod builds); iOS installs as PWA
-- **i18n** — product UI in 5 languages (zh, en, de, fr, es), this repository's docs in 9
+Then install the Android shell from the [latest release](https://github.com/ugjdygh/aegis-chain/releases/latest) and point it at your own gateway.
 
-## Download
+## What is open, what is closed
 
-Latest release: **[v0.5.0](https://github.com/ugjdygh/aegis-chain/releases/tag/v0.5.0)** — three signed Android builds
-(`aegis-dev.apk`, `aegis-test.apk`, `aegis-prod.apk`), the full project archive and `SHA256SUMS.txt`.
-Debug-signed, for testing and internal distribution only.
-
-Install: transfer `aegis-dev.apk` to the phone, allow install from unknown sources, start the gateway in Termux
-(`node src/index.js`), then open the app — it connects to `http://127.0.0.1:8787` by default. For another host,
-long-press the title bar and enter the gateway URL (`http://<LAN-IP>:8787`, or `https://` in public).
-
-## What is public here
-
-| Open | Closed |
+| Open — MIT | Closed — proprietary |
 | --- | --- |
-| Documentation, architecture summary, compliance notes, security policy, roadmap, release notes | Payment engine source, chain scanners, settlement contract source and deployment scripts |
-| Issue tracker, translation corrections, bug reports on documented behaviour | Signing keys, production endpoints, address pools, merchant configurations |
+| [`demo/`](demo/) mobile demo: invoice flow, i18n, mock chain | Production gateway (`src/`), chain scanners, RPC failover, reconciliation |
+| [`sdk/`](sdk/) merchant client: create invoice, poll, verify HMAC webhook | `PaymentHub` settlement contract source and deployment scripts |
+| [`mobile-shell/`](mobile-shell/) Android WebView shell, three build variants | Address pools, signing keys, production endpoints, merchant data |
+| [`examples/`](examples/) Base Sepolia walkthrough, sample payloads | Sanctions screening lists and operational runbooks |
+| [`docs/`](docs/) architecture, features, compliance, nine languages | |
 
-This repository is a public information and support surface. The core implementation is **not** open source; see [docs/OPEN-SCOPE.md](docs/OPEN-SCOPE.md).
+The boundary is deliberate and written down in [`docs/OPEN-SCOPE.md`](docs/OPEN-SCOPE.md). If a feature you need is closed, open an issue describing what you must verify or integrate — do not ask for the engine.
 
-## Compliance boundary
+## Good first issues — start here
 
-Non-custodial software only: no custody, no fiat on/off-ramp, no token issuance, no self-built bridge. Under EU MiCA this is software provision rather than a CASP service; the moment custody, exchange or fiat conversion is added, a CASP licence is required and an individual cannot hold one. See [docs/COMPLIANCE.md](docs/COMPLIANCE.md).
+No blockchain experience needed for most of them.
 
-## Docs
+| Label | What it means | Typical task |
+| --- | --- | --- |
+| `good first issue` | Self-contained, one file, clear acceptance | Fix a typo, add a wallet deep-link example, tighten mobile layout |
+| `i18n` | Translation of `demo/` and docs | Complete Korean / Japanese / Russian / Indonesian UI strings |
+| `docs` | Documentation correctness | A step in the Termux guide that does not work on your phone |
+| `android` | `mobile-shell/` | Reproduce a WebView issue, improve offline page copy |
+| `testnet` | Base Sepolia walkthrough | Run the example flow end-to-end and report what broke |
+| `help wanted` | Bigger, still scoped | SDK examples for Python / PHP, accessibility pass |
 
-- [Architecture](docs/ARCHITECTURE.md) · [Features](docs/FEATURES.md) · [Support / donations](docs/SUPPORT.md) · [Compliance](docs/COMPLIANCE.md) · [Roadmap](docs/ROADMAP.md) · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
+Every issue states scope, acceptance criteria and which directory it touches. If an issue is unclear, say so in the thread — that is a docs bug too.
+
+## How contribution works
+
+1. Pick an issue tagged `good first issue`, `i18n`, `docs`, `android` or `testnet`.
+2. Comment "I'll take this" so nobody duplicates work.
+3. Branch, make the change, run what the PR template asks for.
+4. Open a PR. Review checks cover translation completeness, demo smoke test and shell build.
+5. Merge, and you are credited in the release notes.
+
+Contribution scope, style rules and the "never submit this" list are in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Layout
+
+```
+demo/            self-contained mobile demo (mock chain, 5 languages)
+sdk/             merchant client + webhook signature verification
+mobile-shell/    Android WebView shell (dev / test / prod variants)
+examples/        Base Sepolia walkthrough and sample payloads
+docs/            architecture, features, compliance, security, i18n (9 languages)
+.github/         issue forms, PR template
+```
+
+## Three builds, one feature set
+
+Dev, test and production Android builds load the same server code and differ only in gateway URL, package name and app label. A parity gate compares APK entry sets, shared asset hashes and the three gateways' `/api/features` manifests; any divergence fails the check instead of shipping.
+
+## Documentation
+
+[Architecture](docs/ARCHITECTURE.md) · [Features](docs/FEATURES.md) · [Support / donations](docs/SUPPORT.md) · [Compliance](docs/COMPLIANCE.md) · [Roadmap](docs/ROADMAP.md) · [Changelog](CHANGELOG.md) · [Open scope](docs/OPEN-SCOPE.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
+
+## License
+
+- `demo/`, `sdk/`, `mobile-shell/`, `examples/` — MIT, see [LICENSE](LICENSE)
+- `docs/` — CC BY 4.0
+- Core production implementation — **not licensed, not distributed**; see [`LICENSES.md`](LICENSES.md)
 
 ## Status
 
-Version 0.5.0 — Base mainnet and Base Sepolia verified against live chains; 36 unit tests and 11 end-to-end checks passing; dev / test / prod builds verified feature-identical (30 parity checks). Not audited, not production-hardened. Do not move real customer funds through it yet.
+Version 0.5.0 — Base mainnet and Base Sepolia verified against live chains; unit tests and end-to-end checks passing; dev / test / prod builds verified feature-identical. Not audited, not production-hardened. Do not route real customer funds through it.
+
+## Compliance boundary
+
+Non-custodial software only: no custody, no fiat on/off-ramp, no token issuance, no self-built bridge. Under EU MiCA this is software provision, not a CASP service; adding custody, exchange or fiat conversion would require a licence an individual cannot obtain. See [COMPLIANCE.md](docs/COMPLIANCE.md).

@@ -1,0 +1,26 @@
+name: Translation (i18n)
+description: Fix or complete a language in demo/ or docs/
+title: "[i18n] "
+labels: ["i18n"]
+body:
+  - type: dropdown
+    id: lang
+    attributes:
+      label: Language
+      options: ["zh", "en", "fr", "ko", "ja", "ru", "id", "es", "ar"]
+    validations:
+      required: true
+  - type: dropdown
+    id: target
+    attributes:
+      label: Target
+      options: ["demo UI strings", "README set", "docs pages"]
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+      description: Quote the line and the suggested replacement
+    validations:
+      required: true

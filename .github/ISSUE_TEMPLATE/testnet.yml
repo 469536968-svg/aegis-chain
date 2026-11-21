@@ -1,0 +1,17 @@
+name: Testnet walkthrough
+description: Run the Base Sepolia example and report what broke
+title: "[testnet] "
+labels: ["testnet"]
+body:
+  - type: input
+    id: chain
+    attributes:
+      label: Chain / network
+      value: Base Sepolia (84532)
+  - type: textarea
+    id: result
+    attributes:
+      label: What happened
+      description: Which step failed, with the transaction hash if you have one
+    validations:
+      required: true

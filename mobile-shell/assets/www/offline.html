@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080d13">
+<title>网关未连接</title>
+<style>
+  body{margin:0;background:#080d13;color:#e7eef7;font:15px/1.6 -apple-system,"PingFang SC","Noto Sans SC",sans-serif;
+    padding:calc(28px + env(safe-area-inset-top)) 20px 30px;overscroll-behavior-y:contain}
+  h1{font-size:17px;margin:0 0 10px}
+  .card{background:#111a24;border:1px solid #1e2b39;border-radius:14px;padding:16px;margin-top:14px}
+  .dim{color:#8598ab;font-size:12.5px}
+  code{font-family:ui-monospace,monospace;font-size:12px;color:#38d3c0;word-break:break-all}
+  ol{padding-left:18px;margin:8px 0 0;font-size:13px;color:#c9d6e2}
+  li{margin-bottom:6px}
+  .en{margin-top:22px;border-top:1px solid #1e2b39;padding-top:14px}
+</style>
+</head>
+<body>
+  <h1>网关未连接</h1>
+  <div class="card">
+    <div class="dim">当前地址</div>
+    <code id="u">—</code>
+    <ol>
+      <li>长按顶部标题栏，把地址改成你正在运行的网关（例如手机 Termux 里 <code>http://127.0.0.1:8787</code>）。</li>
+      <li>确认网关已启动：电脑或 Termux 里执行 <code>node src/index.js</code>。</li>
+      <li>同一台手机自跑时地址用 <code>127.0.0.1</code>；跨设备用局域网 IP；公网必须 https。</li>
+    </ol>
+  </div>
+  <div class="card en">
+    <div class="dim">Gateway not reachable</div>
+    <ol>
+      <li>Long-press the title bar to set the gateway URL (e.g. <code>http://127.0.0.1:8787</code> on Termux).</li>
+      <li>Make sure the gateway is running: <code>node src/index.js</code>.</li>
+      <li>Use <code>127.0.0.1</code> on the same device, a LAN IP across devices, https in public.</li>
+    </ol>
+  </div>
+</body>
+</html>

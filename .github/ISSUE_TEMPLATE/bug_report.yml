@@ -1,0 +1,35 @@
+name: Bug report
+description: Something in demo/, sdk/ or mobile-shell/ behaves wrongly
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: ["demo", "sdk", "mobile-shell", "docs", "examples"]
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: Browser / Android version / Node version, and chain if relevant
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. open demo/index.html\n2. ..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: Never paste a private key, seed phrase, API key or a real merchant address.
