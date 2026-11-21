@@ -15,12 +15,13 @@ A self-hosted payment gateway plus a mobile console. Merchants create an invoice
 - **On-chain settlement** — a `PaymentHub` contract releases funds only to the merchant's own address with a signed, replay-proof settlement proof
 - **Cross-chain intents** — a ledger with explicit states (source / confirm / credit / done); no automatic retries, every hop is reconciled
 - **Safety rails** — sanctions screening before an invoice is issued, RPC failover with circuit breaking, reorg-aware confirmations
+- **Support page** — `/support` collects donations through the project's own addresses, with locally generated QR codes and wallet deep links; the supporter list ships disabled by design
 - **Mobile app** — native Android shell (dev / test / prod builds); iOS installs as PWA
 - **i18n** — product UI in 5 languages (zh, en, de, fr, es), this repository's docs in 9
 
 ## Download
 
-Latest release: **[v0.4.0](https://github.com/ugjdygh/aegis-chain/releases/tag/v0.4.0)** — three signed Android builds
+Latest release: **[v0.5.0](https://github.com/ugjdygh/aegis-chain/releases/tag/v0.5.0)** — three signed Android builds
 (`aegis-dev.apk`, `aegis-test.apk`, `aegis-prod.apk`), the full project archive and `SHA256SUMS.txt`.
 Debug-signed, for testing and internal distribution only.
 
@@ -43,8 +44,8 @@ Non-custodial software only: no custody, no fiat on/off-ramp, no token issuance,
 
 ## Docs
 
-- [Architecture](docs/ARCHITECTURE.md) · [Features](docs/FEATURES.md) · [Compliance](docs/COMPLIANCE.md) · [Roadmap](docs/ROADMAP.md) · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
+- [Architecture](docs/ARCHITECTURE.md) · [Features](docs/FEATURES.md) · [Support / donations](docs/SUPPORT.md) · [Compliance](docs/COMPLIANCE.md) · [Roadmap](docs/ROADMAP.md) · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
 
 ## Status
 
-Version 0.4.0 — Base mainnet and Base Sepolia verified against live chains; 29 unit tests and 11 end-to-end checks passing. Not audited, not production-hardened. Do not move real customer funds through it yet.
+Version 0.5.0 — Base mainnet and Base Sepolia verified against live chains; 36 unit tests and 11 end-to-end checks passing; dev / test / prod builds verified feature-identical (30 parity checks). Not audited, not production-hardened. Do not move real customer funds through it yet.
