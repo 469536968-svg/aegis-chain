@@ -18,11 +18,21 @@ A self-hosted payment gateway plus a mobile console. Merchants create an invoice
 - **Mobile app** — native Android shell (dev / test / prod builds); iOS installs as PWA
 - **i18n** — product UI in 5 languages (zh, en, de, fr, es), this repository's docs in 9
 
+## Download
+
+Latest release: **[v0.4.0](https://github.com/ugjdygh/aegis-chain/releases/tag/v0.4.0)** — three signed Android builds
+(`aegis-dev.apk`, `aegis-test.apk`, `aegis-prod.apk`), the full project archive and `SHA256SUMS.txt`.
+Debug-signed, for testing and internal distribution only.
+
+Install: transfer `aegis-dev.apk` to the phone, allow install from unknown sources, start the gateway in Termux
+(`node src/index.js`), then open the app — it connects to `http://127.0.0.1:8787` by default. For another host,
+long-press the title bar and enter the gateway URL (`http://<LAN-IP>:8787`, or `https://` in public).
+
 ## What is public here
 
 | Open | Closed |
 | --- | --- |
-| Documentation, architecture summary, compliance notes, security policy, roadmap | Payment engine source, chain scanners, settlement contract source and deployment scripts |
+| Documentation, architecture summary, compliance notes, security policy, roadmap, release notes | Payment engine source, chain scanners, settlement contract source and deployment scripts |
 | Issue tracker, translation corrections, bug reports on documented behaviour | Signing keys, production endpoints, address pools, merchant configurations |
 
 This repository is a public information and support surface. The core implementation is **not** open source; see [docs/OPEN-SCOPE.md](docs/OPEN-SCOPE.md).
@@ -33,7 +43,7 @@ Non-custodial software only: no custody, no fiat on/off-ramp, no token issuance,
 
 ## Docs
 
-- [Architecture](docs/ARCHITECTURE.md) · [Features](docs/FEATURES.md) · [Compliance](docs/COMPLIANCE.md) · [Roadmap](docs/ROADMAP.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
+- [Architecture](docs/ARCHITECTURE.md) · [Features](docs/FEATURES.md) · [Compliance](docs/COMPLIANCE.md) · [Roadmap](docs/ROADMAP.md) · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
 
 ## Status
 
