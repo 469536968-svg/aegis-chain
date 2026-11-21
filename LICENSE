@@ -1,0 +1,28 @@
+# Aegis Chain — public documentation license
+
+Copyright (c) 2026 Aegis Chain. All rights reserved except as stated below.
+
+## 1. Documentation
+
+The text and diagrams in this repository (README files, everything under `docs/`) are licensed under
+**Creative Commons Attribution 4.0 International (CC BY 4.0)** — https://creativecommons.org/licenses/by/4.0/
+
+You may share and adapt them for any purpose, including commercially, provided you give appropriate credit
+("Aegis Chain, https://github.com/ugjdygh/aegis-chain") and indicate changes.
+
+## 2. No licence for the core implementation
+
+The payment engine, chain scanners, settlement contract, deployment tooling and mobile application sources are
+**not** in this repository and are **not** licensed for use, copying, modification or distribution.
+Publishing documentation here does not grant any right to the implementation, its binaries, its trade secrets
+or its name. See `docs/OPEN-SCOPE.md`.
+
+## 3. Trademarks
+
+"Aegis Chain", the logo and the application icons are marks of the project owner. Do not use them to endorse
+or imply affiliation with a fork, a resale or a different service.
+
+## 4. No warranty
+
+The documentation is provided "as is", without warranty of any kind. It describes software that has not been
+audited; relying on it for financial decisions is at your own risk.

@@ -1,0 +1,21 @@
+# Local build output and secrets
+build/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Runtime state
+ data/
+data/*.json
+.env
+.env.*
+
+# Node
+node_modules/
+
+# Editor / OS
+.DS_Store
+*.swp
+.idea/
+.vscode/
