@@ -18,7 +18,7 @@ Then install the Android shell from the [latest release](https://github.com/ugjd
 
 | Open — MIT | Closed — proprietary |
 | --- | --- |
-| [`demo/`](demo/) mobile demo: invoice flow, i18n, mock chain | Production gateway (`src/`), chain scanners, RPC failover, reconciliation |
+| [`demo/`](demo/) mobile demo: invoice flow, mock chain, zh/en today — more languages wanted | Production gateway (`src/`), chain scanners, RPC failover, reconciliation |
 | [`sdk/`](sdk/) merchant client: create invoice, poll, verify HMAC webhook | `PaymentHub` settlement contract source and deployment scripts |
 | [`mobile-shell/`](mobile-shell/) Android WebView shell, three build variants | Address pools, signing keys, production endpoints, merchant data |
 | [`examples/`](examples/) Base Sepolia walkthrough, sample payloads | Sanctions screening lists and operational runbooks |
@@ -54,7 +54,7 @@ Contribution scope, style rules and the "never submit this" list are in [CONTRIB
 ## Layout
 
 ```
-demo/            self-contained mobile demo (mock chain, 5 languages)
+demo/            self-contained mobile demo (mock chain, zh/en today)
 sdk/             merchant client + webhook signature verification
 mobile-shell/    Android WebView shell (dev / test / prod variants)
 examples/        Base Sepolia walkthrough and sample payloads
