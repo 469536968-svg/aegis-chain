@@ -142,11 +142,12 @@ const TRON_ADDRS = [
 ];
 function newInvoice(chain, asset, amount, order){
   DB.seq++;
+  const pool = chain==='tron' ? TRON_ADDRS : ADDRS;
   const inv = {
     id: 'inv_demo' + DB.seq.toString().padStart(4,'0'),
     chainKey: chain, chainId: chain==='demo'?20270:chain==='tron'?728126428:84532,
     asset, amount: String(amount||'25'), orderId: order || '',
-    address: (chain==='tron'?TRON_ADDRS:ADDRS)[(DB.seq-1) % 3],
+    address: pool[(DB.seq-1) % pool.length],
     status: 'pending', conf: 0, req: chain==='demo'?2:5,
   };
   DB.invoices.unshift(inv);
