@@ -1,5 +1,25 @@
 # Changelog
 
+## [Unreleased] — 2026-11-22
+
+真实付款闭环在 Base Sepolia 上跑通 / real payment loop verified on Base Sepolia:
+invoice `inv_a5c63ae8bf364624a94b`, 0.001 ETH, tx `0x12298999ce1968a5eeca5956dc69f0363884ac4bf9620aba9e5f23a3ffd0708f`,
+5+ confirmations, final state `confirmed`. Details: `docs/TESTNET-EVIDENCE.md`.
+
+### Fixed
+- Bridging ETH via `OptimismPortal` without a transaction `value` override: receipt was successful and the
+  `TransactionDeposited` event carried the right amount, yet no ETH left the source chain and nothing was
+  minted on L2. Deposits are now only considered done when the L1 balance actually decreases.
+- A single failing chain RPC could starve the whole scan loop: the loop iterated chains sequentially, so
+  retries and back-off on an unhealthy endpoint meant other chains were never scheduled. A `CHAINS_ONLY`
+  allow-list was added as a stop-gap; per-chain scheduling is the planned proper fix.
+- Scanner catch-up speed: block fetching is now parallel during catch-up (bounded worker pool, ordering
+  preserved for cursor, fork hashes and payment matching), and ERC-20 log queries are skipped unless an
+  unfinished invoice needs that token. 60 blocks measured at 24.2s serial vs 5.1s at concurrency 8.
+
+### Verified
+- 36/36 unit tests pass after the above changes
+
 ## [0.5.0] — 2026-11-21
 
 支持项目（捐赠）页 / support-donation page.
